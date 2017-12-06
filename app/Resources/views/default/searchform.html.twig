@@ -1,16 +1,13 @@
-{# app/Resources/views/default/searchform.html.twig #}
-{% extends 'base.html.twig' %}
-
-{% block title %}Youtubular{% endblock %}
-
-{% block body %}
-    <h1>Welcome to Youtubular</h1>
     {{ form_start(form) }}
     <div>
         {{ form_label(form.searchTerm) }}
         {{ form_errors(form.searchTerm) }}
         {{ form_widget(form.searchTerm) }}
     </div>
+    <div>
+        {{ form_label(form.type) }}
+        {{ form_errors(form.type) }}
+        {{ form_widget(form.type) }}
+    </div>
     {{ form_widget(form) }}
     {{ form_end(form) }}
-{% endblock %}

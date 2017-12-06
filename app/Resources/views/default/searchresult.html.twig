@@ -6,5 +6,18 @@
 
 {% block body %}
     <h1>Thanks for using Youtubular!</h1>
-    <p>You searched for {{ searchTerm }}.</p>
+    {% include 'default/searchform.html.twig' %}
+    <p>You searched for <b>{{ searchTerm }}</b> in <i>{{ searchType }}</i>.</p>
+    <div>Displaying {{ searchResults['pageInfo']['resultsPerPage'] }} of {{ searchResults['pageInfo']['totalResults'] }} results returned.</div>
+    {% for item in searchResults['items'] %}
+        {% if item['id']['videoId'] is defined %}
+        <h2><a href="https://www.youtube.com/watch?v={{ item['id']['videoId'] }}">{{ item['snippet']['title'] }}</a></h2>
+        {% elseif item['id']['channelId'] is defined %}
+        <h2><a href="https://www.youtube.com/watch?v={{ item['id']['channelId'] }}">{{ item['snippet']['title'] }}</a></h2>
+        {% else %}
+        <h2>{{ item['snippet']['title'] }}</h2>
+        {% endif %}
+        <img src="{{ item['snippet']['thumbnails']['medium']['url'] }}" />
+        <p>{{ item['snippet']['description'] }}</p>
+    {% endfor %}
 {% endblock %}

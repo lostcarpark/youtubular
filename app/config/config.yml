@@ -7,6 +7,8 @@ imports:
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
+    # Sets up the Google API key for youtube. Actual is sored in environment variable, as we don't want to publish key.
+    app.api_key: "%env(API_KEY)%"
 
 framework:
     #esi: ~
